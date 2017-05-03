@@ -1,0 +1,41 @@
+<ion-view view-title="Dashboard">
+  <ion-header-bar align-title="center" class="bar-positive">
+    <h1 class="title">Ionic Pinch Zoom!</h1>
+</ion-header-bar>
+  <ion-content class="padding">
+    <h2>Welcome to Ionic</h2>
+    <hr/>
+    <p>This is the Ionic Pinch zoom app!.</p>
+    <hr/>
+    <ion-slide-box on-slide-changed="slideHasChanged($index)">
+      <ion-slide ng-repeat="image in sliderImages">
+        <img width="100%" ng-src="{{image}}" ng-click="showPinchZoomView($index)"/>
+      </ion-slide>
+    </ion-slide-box>
+  </ion-content>
+</ion-view>
+<script id="pinch-zoom.html" type="text/ng-template">	
+	    <div class="modal image-modal transparent"  on-tap="closeModal()">
+	      <ion-slide-box  show-pager="false"  delegate-handle="pinch-zoom-slide">
+	        <ion-slide ng-repeat="photo in sliderImages" on-slide-changed="currentInSlide = $index">       
+	      		<ion-scroll 
+              ng-if="$index == currentInSlide" 
+	      			direction="xy"       			
+	      			zooming="true" 
+	      			scrollbar-x="false"
+	      			scrollbar-y="false"	      			
+	      			min-zoom="1"	      			
+	      			max-zoom="4"
+	      			locking="false"
+	      			delegate-handle="scrollHandle{{$index}}" 
+	      			on-scroll="updateSlideStatus($index)" 
+	      			on-release="updateSlideStatus($index)"
+	      			overflow-scroll="false"
+	      			has-bouncing = "false"
+	      			>
+              <img ng-src="{{photo}}" width="100%" style="position:relative; margin-top:50%; height:100%;" />
+	      		</ion-scroll>
+	        </ion-slide>
+	      </ion-slide-box>
+	    </div>
+</script>
