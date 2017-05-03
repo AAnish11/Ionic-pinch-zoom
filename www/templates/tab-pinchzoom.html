@@ -16,10 +16,9 @@
 </ion-view>
 <script id="pinch-zoom.html" type="text/ng-template">	
 	    <div class="modal image-modal transparent"  on-tap="closeModal()">
-	      <ion-slide-box  show-pager="false"  delegate-handle="pinch-zoom-slide">
-	        <ion-slide ng-repeat="photo in sliderImages" on-slide-changed="currentInSlide = $index">       
-	      		<ion-scroll 
-              ng-if="$index == currentInSlide" 
+	      <ion-slide-box  show-pager="false"  delegate-handle="pinch-zoom-slide" active-slide="currentInSlide">
+	        <ion-slide ng-repeat="photo in sliderImages">       
+	      		<ion-scroll
 	      			direction="xy"       			
 	      			zooming="true" 
 	      			scrollbar-x="false"
